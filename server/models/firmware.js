@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/pbu_tms",{useNewUrlParser:true});
+//mongoose.connect("mongodb://localhost:27017/pbu_tms",{useNewUrlParser:true});
 var Schema = mongoose.Schema;
 
 //create a counter schema for field auto-increment purposes
@@ -34,5 +34,6 @@ firmwareSchema.pre('save',function(next){
 })
 
 //create a model from the schema and export for use
-var Firmware = mongoose.model('Firmware',firmwareSchema);
-module.exports = Firmware;
+//var Firmware = mongoose.model('Firmware',firmwareSchema);
+//module.exports = Firmware;
+mongoose.model('Firmware',firmwareSchema);
