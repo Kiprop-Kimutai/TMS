@@ -10,6 +10,7 @@ import {LayoutComponent} from './layout/layout.component';
 import {NavListComponent} from './layout/nav-list.component';
 import {PageDirective} from './common/PageDirective';
 import {UsersPageComponent} from './users/users-page.component';
+import {UserProfileComponent} from './users/userprofile/user-profile.component';
 import {UserFormService} from './users/user-forms.service';
 import {LoginFormComponent} from './login/login-form.component';
 import {RegisterFormComponent} from './login/register-form.component';
@@ -35,7 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
     NavListComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    DashboardComponent,DeviceFirmwareComponent,
+    DashboardComponent,DeviceFirmwareComponent,UserProfileComponent,
     PageDirective,DeviceDialog,DeviceComponent,DeviceListComponent,FilterDevicess,PageNotFoundComponent
   ],
   imports: [
