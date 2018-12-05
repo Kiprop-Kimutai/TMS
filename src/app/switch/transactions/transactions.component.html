@@ -1,0 +1,96 @@
+<div class = "body">
+    <h3>Transactions work...</h3>
+    <mat-card>
+            <mat-form-field class = "filterField">
+              <input  matInput (keyup)= "filterTransactionFiles($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+            <table mat-table [dataSource]="transactionFiles" class="mat-elevation-z8">
+            
+                <!-- macAddress Column -->
+                <ng-container matColumnDef="macAddress">
+                  <th mat-header-cell *matHeaderCellDef> macaddress </th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.macAddress}} </td>
+                </ng-container>
+              
+                <!--  dateUploaded Column -->
+                <ng-container matColumnDef="dateUploaded">
+                  <th mat-header-cell *matHeaderCellDef> date uploaded </th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.dateUploaded}} </td>
+                </ng-container>
+              
+                <!-- filename Column -->
+                <ng-container matColumnDef="filename">
+                  <th mat-header-cell *matHeaderCellDef>filename</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.filename}} </td>
+                </ng-container>
+              
+                <!-- token column-->
+                <ng-container matColumnDef="token">
+                  <th mat-header-cell *matHeaderCellDef>token</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.token}} </td>
+                </ng-container>
+              
+                <!-- flag  Column -->
+                <ng-container matColumnDef="flag">
+                  <th mat-header-cell *matHeaderCellDef>flag</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.flag }} </td>
+                </ng-container>
+                <!-- valueTransactionCount  Column -->
+                <ng-container matColumnDef="valueTransactionCount">
+                    <th mat-header-cell *matHeaderCellDef>value txn count</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.valueTransactionCount }} </td>
+                </ng-container>
+                <!-- valueTransactionAmount  Column -->
+                <ng-container matColumnDef="valueTransactionAmount">
+                    <th mat-header-cell *matHeaderCellDef>value txn amount</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.valueTransactionAmount }} </td>
+                </ng-container>
+                <!-- valueTransactionVoidCount  Column -->
+                <ng-container matColumnDef="valueTransactionVoidCount">
+                    <th mat-header-cell *matHeaderCellDef>value txn void count</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.valueTransactionVoidCount }} </td>
+                </ng-container>
+                <!-- valueTransactionVoidAmount  Column -->
+                <ng-container matColumnDef="valueTransactionVoidAmount">
+                    <th mat-header-cell *matHeaderCellDef>value txn void amt</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.valueTransactionVoidAmount }} </td>
+                </ng-container>
+                <!-- commodityTransactionCount  Column -->
+                <ng-container matColumnDef="commodityTransactionCount">
+                    <th mat-header-cell *matHeaderCellDef>commodity txn  count</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.commodityTransactionCount }} </td>
+                </ng-container>
+                <!-- commodityTransactionAmount  Column -->
+                <ng-container matColumnDef="commodityTransactionAmount">
+                    <th mat-header-cell *matHeaderCellDef>commodity txn  amt</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.commodityTransactionAmount }} </td>
+                </ng-container>
+                 <!-- commodityTransactionVoidCount  Column -->
+                <ng-container matColumnDef="commodityTransactionVoidCount">
+                    <th mat-header-cell *matHeaderCellDef>commodity txn void count</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.commodityTransactionVoidCount }} </td>
+                </ng-container>
+                    <!-- commodityTransactionVoidAmount  Column -->
+                <ng-container matColumnDef="commodityTransactionVoidAmount">
+                    <th mat-header-cell *matHeaderCellDef>commodity txn void amount</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.commodityTransactionVoidAmount }} </td>
+                </ng-container>
+                    <!-- lastReceiptNo  Column -->
+                <ng-container matColumnDef="lastReceiptNo">
+                    <th mat-header-cell *matHeaderCellDef>last receipt</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.lastReceiptNo }} </td>
+                </ng-container>
+           
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "navigateToUserDetails(row.id)"></tr>
+              </table>
+            <div>
+            <mat-paginator [length]= "dataLength"
+                          [pageSize]="pageSize"
+                          [pageSizeOptions]="[2, 3, 5, 10, 25, 100]"
+                          (page) = "pageEvent = $event" (page) = "paginateValues(pageEvent.pageSize,pageEvent.pageIndex)">
+            </mat-paginator >
+            </div>
+          </mat-card>
+</div>
