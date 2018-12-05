@@ -9,7 +9,7 @@ import {DeviceComponent} from './device/device.component';
 import {PageNotFoundComponent} from './page-not-found.component';
 import {AuthGuardService} from './auth-guard.service';
 import {CanDeactivateGuard} from './can-deactivate-guard.service';
-
+import {SwitchModule} from './switch/switch.module';
 const appRoutes:Routes = [
   {
     path:'',
@@ -31,6 +31,10 @@ const appRoutes:Routes = [
       {
         path:'',
         component:DashboardComponent
+      },
+      {
+        path:'switch',
+        loadChildren:'./switch/switch.module#SwitchModule'
       },
       {
         path:'devices',
