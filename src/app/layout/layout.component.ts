@@ -2,6 +2,7 @@ import {Component,OnInit} from '@angular/core';
 import {AuthService} from '../login/auth.service';
 import {MenuService} from './menu-service';
 import {Menu} from '../models/menus';
+import {UserProfileComponent} from '../users/userprofile/user-profile.component';
 @Component({
   selector:'layout-component',
   templateUrl:'./layout.component.html',
@@ -13,6 +14,7 @@ export class LayoutComponent implements OnInit{
   loggedInuser:string = "";
   menus:Menu[];
   menu:Menu;
+  showprofilewidget:boolean = false;
     constructor(private authService:AuthService,private menuService:MenuService){
     }
     ngOnInit(){
@@ -33,5 +35,13 @@ export class LayoutComponent implements OnInit{
 
     loadMenus(){
       this.menuService.fetchMenus().subscribe(data =>{this.menus = data;console.log(data)})
+    }
+
+    private showProfile(){
+      this.showprofilewidget = this.showprofilewidget === false ? true:false;
+    }
+    outletDOMClicked(){
+      console.log("DOM clicked..");
+      this.showprofilewidget = false;
     }
 }
