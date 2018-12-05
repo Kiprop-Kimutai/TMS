@@ -1,8 +1,12 @@
 .body{
-  height:auto;
+  max-height:100vh;
+}
+.drawer-content{
+ /* overflow-y: scroll;*/
 }
 .toolbar{
   margin:-8px;
+  position:relative;
 }
 .mat-toolbar{
   background-color: teal;
@@ -16,10 +20,23 @@
   /*background-color:rgba(199, 208, 227, 0.14);*/
   background-color: whitesmoke;
 }
+
 .submenus{
   margin-left: 45px;
 }
 
+.profilecomponent{
+  position: absolute;
+  z-index: 1.2;
+}
+.outlet{
+  position: relative;
+  z-index: -1;
+}
+sidenav{
+  height:20vh;
+  overflow-y: scroll;
+}
 @media only screen and (min-device-width:830px){
   .mat-drawer{
     width: 15vw;
