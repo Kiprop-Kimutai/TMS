@@ -12,10 +12,11 @@ export class TransactionFiles{
     commodityTransactionAmount:string
     commodityTransactionVoidCount:string;
     commodityTransactionVoidAmount:string;
+    firstReceiptNo:string;
     lastReceiptNo:string;
 
     constructor(macAddress,dateUploaded,filename,token,flag,valueTransactionCount,valueTransactionAmount,valueTransactionVoidCount,
-        valueTransactionVoidAmount,commodityTransactionCount,commodityTransactionAmount,commodityTransactionVoidCount,commodityTransactionVoidAmount,lastReceiptNo){
+        valueTransactionVoidAmount,commodityTransactionCount,commodityTransactionAmount,commodityTransactionVoidCount,commodityTransactionVoidAmount,firstReceiptNo,lastReceiptNo){
             this.macAddress=macAddress;
             this.dateUploaded=dateUploaded;
             this.filename =filename;
@@ -28,7 +29,8 @@ export class TransactionFiles{
             this.commodityTransactionCount=commodityTransactionCount;
             this.commodityTransactionAmount=commodityTransactionAmount;
             this.commodityTransactionVoidCount=commodityTransactionVoidCount;
-            this.commodityTransactionVoidAmount=commodityTransactionAmount;
+            this.commodityTransactionVoidAmount=commodityTransactionVoidAmount;
+            this.firstReceiptNo=firstReceiptNo;
             this.lastReceiptNo=lastReceiptNo;
         }
 }
