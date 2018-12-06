@@ -83,7 +83,7 @@
            
               
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "navigateToUserDetails(row.id)"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "navigateToTransactionDetails(row.token)"></tr>
               </table>
             <div>
             <mat-paginator [length]= "dataLength"
