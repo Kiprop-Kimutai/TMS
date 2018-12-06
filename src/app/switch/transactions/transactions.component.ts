@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {TransactionFiles} from '../../models/tms_upload_files';
 import {SwitchService} from '../switch.service';
 import {paginatorFunction} from '../../common/PaginatorFunction';
+import {Router} from '@angular/router';
 @Component({
     selector:'transactions',
     templateUrl:'./transactions.component.html',
@@ -20,7 +21,7 @@ export class TransactionsComponent implements OnInit{
     dataLength:number;
     pageSize:number;
 
-    constructor(private switchService:SwitchService){
+    constructor(private switchService:SwitchService,private router:Router){
 
     }
 
@@ -43,6 +44,12 @@ export class TransactionsComponent implements OnInit{
     
       private paginateValues(pageSize:number,pageIndex:number):void{
         this.transactionFiles = <TransactionFiles[]>paginatorFunction(this.paginatedTransactionFiles,pageSize,pageIndex);
+      }
+
+      navigateToTransactionDetails(token:string){
+        console.log("watching...");
+        console.log(token);
+        this.router.navigate(['/layout/switch/transactions',token]);
       }
     ngOnInit(){
         this.fetchTransactionFiles();
