@@ -1,0 +1,10 @@
+.body{
+    min-height:89vh;
+    overflow-y:scroll;
+}
+mat-card{
+    width:100%;
+}
+table{
+    width:100%;
+}
