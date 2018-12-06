@@ -1,0 +1,94 @@
+<div class = "body">
+    <h3>Render traasaction details here</h3>
+    <mat-card>
+        <form *ngIf = "showtxnFormGroup" [formGroup] = "transactionFilesFormGroup" (ngSubmit) = "updateTransaction()">
+            <table>
+                <tr>
+                    <td>
+                        <div>
+                            <label for = "macAddress" class = "field-label">macaddress</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput  type = "text"  formControlName = "macAddress" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for = "dateUploaded" class = "field-label">date Uploaded</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "dateUploaded" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for = "filename" class = "field-label">filename</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "filename" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div>
+                            <label for = "firstReceiptNo" class = "field-label">first receipt</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "firstReceiptNo" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for = "lastReceiptNo" class = "field-label">last receipt</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "lastReceiptNo" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label for = "token" class = "field-label">token</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "token" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label for = "valueTransactionAmount" class = "field-label">value transaction amount</label><br>
+                            <mat-form-field class = "device-input">
+                                <input matInput   formControlName = "valueTransactionAmount" />
+                            </mat-form-field>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                        <label for = "commodityTransactionAmount" class = "field-label">commodity transaction amount</label><br>
+                        <mat-form-field class = "device-input">
+                            <input matInput   formControlName = "commodityTransactionAmount" />
+                        </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div>
+                                <mat-form-field>
+                                        <mat-select placeholder={{transactionFile.flag}}>
+                                          <mat-option *ngFor="let flag of flagOptions" [value]="flag">
+                                            {{flag}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </mat-card>
+</div>
