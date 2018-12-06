@@ -2,13 +2,32 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable,of} from 'rxjs';
 import { map, delay } from '../../../node_modules/rxjs/operators';
+import {TransactionFiles} from '../models/tms_upload_files';
 @Injectable()
 export class SwitchService{
+    transactionFiles:Observable<any>;
     constructor(private http:HttpClient){}
 
     public fetchTransactionFiles():Observable<any>{
-       // return this.http.get('http://localhost:2000/api/tms_file_routes/fetchall');
-       return of(transactions).pipe(delay(1000));
+       //return this.http.get('http://localhost:2000/api/tms_file_routes/fetchall');
+       this.transactionFiles= this.http.get('http://localhost:2000/api/tms_file_routes/fetchall');
+       localStorage.removeItem("txnfiles");
+       this.transactionFiles.subscribe(data=>{localStorage.setItem("txnfiles",JSON.stringify(data.response_message))});
+       return this.transactionFiles;
+       //return of(transactions).pipe(delay(1000));
+    }
+    public  setTransactionFiles(){
+        //localStorage.setItem()
+    }
+
+    public getTransactionFiles():TransactionFiles[]{
+        return JSON.parse(localStorage.getItem("txnfiles"));
+    }
+    public fetchTransactionFileByToken(token:string){
+        console.log(localStorage.getItem("txnfiles"));
+        console.log("****");
+        console.log(of(JSON.parse(localStorage.getItem("txnfiles"))).pipe(map(txnfiles =>txnfiles.find(txnfile =>txnfile.token === token))));
+        return of(JSON.parse(localStorage.getItem("txnfiles"))).pipe(map(txnfiles =>txnfiles.find(txnfile =>txnfile.token === token)));
     }
 }
 
