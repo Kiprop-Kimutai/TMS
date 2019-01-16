@@ -4,6 +4,8 @@ import {TransactionFiles} from '../../models/tms_upload_files';
 import {SwitchService} from '../switch.service';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
 import { resolve } from 'url';
+import {MatTableDataSource} from '@angular/material/table';
+import {paginatorFunction} from '../../common/PaginatorFunction';
 @Component({
     selector:'transaction-details',
     templateUrl:'./transaction-details.component.html',
@@ -14,7 +16,16 @@ export class TransactionDetailComponent implements OnInit{
     transactionFileCopy:TransactionFiles;
     transactionFilesFormGroup:FormGroup;
     showtxnFormGroup = false;
+    showtransactions = false;
     flagOptions = ["P","U","F","D"];
+    dataSource:MatTableDataSource<any>;
+    transactions:any;
+    transactionsCopy:any;
+    paginatedTransactions:any;
+    displayedColumns = ['voucherno','cardno','iccid','txntype','oid','rcpt','voc','ddv','username','date','macaddress','txns','auth','latitude','longitude'];
+    pageIndex:number = 0;
+    dataLength:number;
+    pageSize:number = 30;
     constructor(private route:ActivatedRoute,private switchService:SwitchService){
        // this.createFormGroup();
     }
@@ -45,6 +56,7 @@ export class TransactionDetailComponent implements OnInit{
         }).then((done)=>{
             this.createFormGroup();
             this.showtxnFormGroup = true;
+            this.fetchTransactions(this.transactionFilesFormGroup.get('filename').value);
         })
         //this.switchService.fetchTransactionFileByToken(token).subscribe(data =>{console.log(this.transactionFile),this.transactionFile = data;this.transactionFileCopy = data;console.log(data)});
     }
@@ -52,8 +64,41 @@ export class TransactionDetailComponent implements OnInit{
     updateTransaction(){
 
     }
+
+    fetchTransactions(filename:string){
+        new Promise((resolve,reject) =>{
+            resolve(this.switchService.fetchBatchTransactionsByFilename(filename).subscribe(data =>{
+                this.transactions = data.response_message.slice(0,this.pageSize);
+                this.dataLength = data.response_message.length;
+                this.transactionsCopy = data.response_message;
+                this.paginatedTransactions = data.response_message;
+                console.log(data);}))
+        }).then(done=>{
+            this.showtransactions = true;
+        })
+        //this.switchService.fetchBatchTransactionsByFilename(filename).subscribe(data =>{this.transactions = data.response_message;console.log(data);});
+    }
+
+    filterTransactions(text){
+        queryString = text;
+        this.transactions = this.transactionsCopy.filter(this.filterTransaction).slice(0,this.pageSize);
+    }
+    filterTransaction(transaction):any{
+        let patt = new RegExp(queryString,"i");
+        if(patt.test(transaction.voucherno) || patt.test(transaction.cardno) || patt.test(transaction.iccid) || patt.test(transaction.txntype) || patt.test(transaction.oid) || 
+           patt.test(transaction.rcpt) || patt.test(transaction.voc) || patt.test(transaction.ddv) || patt.test(transaction.username || patt.test(transaction.date) ||
+           patt.test(transaction.macaddress) || patt.test(transaction.txns) || patt.test(transaction.auth) || patt.test(transaction.latitude) || patt.test(transaction.longitude))){
+          return transaction;
+        }
+        return;
+    }
+    private paginateValues(pageSize:number,pageIndex:number):void{
+        this.transactions = <TransactionFiles[]>paginatorFunction(this.paginatedTransactions,pageSize,pageIndex);
+        console.log(this.transactions);
+    }
     ngOnInit(){
         this.fetchDeviceByToken(this.route.snapshot.paramMap.get("token"));
 
     }
 }
+var queryString = "";

@@ -33,7 +33,7 @@ export class DeviceListComponent implements OnInit{
     const devicess = this.fetchDevices();
     this.dataSource = new MatTableDataSource(devicess);
     this.displayedColumns = ['id','macaddress','serialno','model','kernel','firmware','active'];
-    this.pageSize = 10;
+    this.pageSize = 2;
   }
   fetchDevices():Device[]{
     this.deviceService.fetchDevices().subscribe(data => {this.renderDevices = data;this.paginatedDevices = data;placeholderDevices = data;console.log("Length::"+this.renderDevices.length);this.dataLength = this.renderDevices.length;});

@@ -1,5 +1,4 @@
 <div class = "body">
-    <h3>Render traasaction details here</h3>
     <mat-card>
         <form *ngIf = "showtxnFormGroup" [formGroup] = "transactionFilesFormGroup" (ngSubmit) = "updateTransaction()">
             <table>
@@ -90,5 +89,101 @@
                 </tr>
             </table>
         </form>
+        <mat-form-field class = "filterField">
+            <input  matInput (keyup)= "filterTransactions($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+          <table *ngIf = "showtransactions" mat-table [dataSource]="transactions" class="mat-elevation-z8">
+          
+              <!-- voucherno Column -->
+              <ng-container matColumnDef="voucherno">
+                <th mat-header-cell *matHeaderCellDef> voucherno </th>
+                <td mat-cell *matCellDef="let transaction" > {{transaction.voucherno}} </td>
+              </ng-container>
+            
+              <!--  cardno Column -->
+              <ng-container matColumnDef="cardno">
+                <th mat-header-cell *matHeaderCellDef> cardno </th>
+                <td mat-cell *matCellDef="let transaction" > {{transaction.cardno}} </td>
+              </ng-container>
+            
+              <!-- iccid Column -->
+              <ng-container matColumnDef="iccid">
+                <th mat-header-cell *matHeaderCellDef>iccid</th>
+                <td mat-cell *matCellDef="let transaction" > {{transaction.iccid}} </td>
+              </ng-container>
+            
+              <!-- txntype column-->
+              <ng-container matColumnDef="txntype">
+                <th mat-header-cell *matHeaderCellDef>txntype</th>
+                <td mat-cell *matCellDef="let transaction" > {{transaction.txntype}} </td>
+              </ng-container>
+            
+              <!-- oid  Column -->
+              <ng-container matColumnDef="oid">
+                <th mat-header-cell *matHeaderCellDef>original id</th>
+                <td mat-cell *matCellDef="let transaction" > {{transaction.oid }} </td>
+              </ng-container>
+              <!-- rcpt  Column -->
+              <ng-container matColumnDef="rcpt">
+                  <th mat-header-cell *matHeaderCellDef>rcpt</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.rcpt }} </td>
+              </ng-container>
+              <!-- voc  Column -->
+              <ng-container matColumnDef="voc">
+                  <th mat-header-cell *matHeaderCellDef>value-on-card</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.voc }} </td>
+              </ng-container>
+              <!-- ddv  Column -->
+              <ng-container matColumnDef="ddv">
+                  <th mat-header-cell *matHeaderCellDef>deducted-value</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.ddv }} </td>
+              </ng-container>
+              <!-- username  Column -->
+              <ng-container matColumnDef="username">
+                  <th mat-header-cell *matHeaderCellDef>username</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.username }} </td>
+              </ng-container>
+              <!-- date  Column -->
+              <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef>date</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.date }} </td>
+              </ng-container>
+              <!-- macaddress  Column -->
+              <ng-container matColumnDef="macaddress">
+                  <th mat-header-cell *matHeaderCellDef>macaddress</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.macaddress }} </td>
+              </ng-container>
+               <!-- txns  Column -->
+              <ng-container matColumnDef="txns">
+                  <th mat-header-cell *matHeaderCellDef>transactions</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.txns }} </td>
+              </ng-container>
+                  <!-- auth  Column -->
+              <ng-container matColumnDef="auth">
+                  <th mat-header-cell *matHeaderCellDef>auth-mode</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.auth }} </td>
+              </ng-container>
+                  <!-- latitude  Column -->
+              <ng-container matColumnDef="latitude">
+                  <th mat-header-cell *matHeaderCellDef>latitude</th>
+                  <td mat-cell *matCellDef="let transaction" > {{transaction.latitude }} </td>
+              </ng-container>
+                <!-- longitude  Column -->
+                <ng-container matColumnDef="longitude">
+                    <th mat-header-cell *matHeaderCellDef>longitude</th>
+                    <td mat-cell *matCellDef="let transaction" > {{transaction.longitude }} </td>
+                </ng-container>
+         
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          <div>
+          <mat-paginator [length]= "dataLength"
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="[2, 3, 5, 10, 25, 100]"
+                        (page) = "pageEvent = $event" (page) = "paginateValues(pageEvent.pageSize,pageEvent.pageIndex)">
+          </mat-paginator >
+          </div>
     </mat-card>
 </div>

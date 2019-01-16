@@ -10,7 +10,7 @@ if(process.env.NODE_ENV==='production'){
 mongoose.connect(dburl,{useNewUrlParser:true});
 //connection events here
 mongoose.connection.on('connected',()=>{console.log("Database successfully connected at %s",dburl)});
-mongoose.connection.on('error',(err)=>{console.log("Database connection failed with error"+error)});
+mongoose.connection.on('error',(err)=>{console.log("Database connection failed with error"+err)});
 mongoose.connection.on('disconnected',()=>{console.log("Mongoose connection disconnected")});
 
 //CAPTURE APP TERMINATION/RESTART EVENTS

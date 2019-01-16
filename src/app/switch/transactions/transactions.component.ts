@@ -19,14 +19,19 @@ export class TransactionsComponent implements OnInit{
                             'commodityTransactionVoidAmount','lastReceiptNo'];
     pageIndex:number = 0;
     dataLength:number;
-    pageSize:number;
+    pageSize:number = 30;
 
     constructor(private switchService:SwitchService,private router:Router){
 
     }
 
     fetchTransactionFiles(){
-            this.switchService.fetchTransactionFiles().subscribe(data =>{this.transactionFiles=data.response_message;this.transactionFilesCopy=data.response_message;this.paginatedTransactionFiles=data.response_message;console.log(data);})
+            this.switchService.fetchTransactionFiles().subscribe(data =>{
+              this.dataLength = data.response_message.length;
+              this.transactionFiles=data.response_message.slice(0,this.pageSize);
+              this.transactionFilesCopy=data.response_message;
+              this.paginatedTransactionFiles=data.response_message;
+              console.log(data);})
     }
     private filterTransactionFiles(text){
         queryString = text;
@@ -39,10 +44,9 @@ export class TransactionsComponent implements OnInit{
           return transactionfile;
         }
         return;
-    
       }
     
-      private paginateValues(pageSize:number,pageIndex:number):void{
+       paginateValues(pageSize:number,pageIndex:number):void{
         this.transactionFiles = <TransactionFiles[]>paginatorFunction(this.paginatedTransactionFiles,pageSize,pageIndex);
       }
 
@@ -53,9 +57,9 @@ export class TransactionsComponent implements OnInit{
       }
     ngOnInit(){
         this.fetchTransactionFiles();
-        this.pageSize = 10;
+        this.pageSize = 15;
         this.dataSource = new  MatTableDataSource(this.transactionFiles);
-        this.dataLength = 4;
+        //this.dataLength = 4;
     }
 }
 
