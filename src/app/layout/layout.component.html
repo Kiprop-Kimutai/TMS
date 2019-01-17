@@ -9,7 +9,7 @@
 <div (click) = "outletDOMClicked()">
 <mat-drawer-container class = "mat-drawer-container">
 <mat-drawer mode = {{sidenavMode}}  [opened] = isSidenavOpened class = "mat-drawer" #drawer>
-<navlist-component *ngFor = "let menu of menus" [menu] = menu></navlist-component>
+<navlist-component style = "background-color:#272B35" *ngFor = "let menu of menus" [menu] = menu></navlist-component>
 </mat-drawer>
 <mat-drawer-content>
     <div class = "profilecomponent" *ngIf = "showprofilewidget">

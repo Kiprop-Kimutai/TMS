@@ -1,0 +1,11 @@
+.body{
+  height:89vh;
+  overflow-y: scroll;
+}
+mat-card{
+  margin:8px;
+}
+table{
+  width:90%;
+  font-size: 0.7em;
+}

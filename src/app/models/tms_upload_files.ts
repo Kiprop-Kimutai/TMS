@@ -1,8 +1,8 @@
 export class TransactionFiles{
     macAddress:string;
     dateUploaded:string;
-    filename:string;
-    token:string;
+    filename?:string;
+    token?:string;
     flag:string;
     valueTransactionCount:string;
     valueTransactionAmount:string;

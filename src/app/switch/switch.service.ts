@@ -6,7 +6,8 @@ import {TransactionFiles} from '../models/tms_upload_files';
 @Injectable()
 export class SwitchService{
     transactionFiles:Observable<any>;
-     API = "http://localhost:2000/api";
+     //API = "http://localhost:2000/api";
+     API = "/api";
     constructor(private http:HttpClient){}
 
     public fetchTransactionFiles():Observable<any>{

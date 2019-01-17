@@ -19,6 +19,7 @@
 .mat-drawer{
   /*background-color:rgba(199, 208, 227, 0.14);*/
   background-color: whitesmoke;
+  text:white;
 }
 
 .submenus{
@@ -47,7 +48,8 @@ sidenav{
    /*margin-right:-300px;*/
   }
   .mat-drawer{
-    background-color: grey;
+   /* background-color: grey;*/
+   background-color: #272B35;
   }
 
   .body{
@@ -57,7 +59,7 @@ sidenav{
 }
 @media only screen and (max-device-width:398px){
  .toolbar,.mat-drawer-container{
-  
+
   }
 
   .body{

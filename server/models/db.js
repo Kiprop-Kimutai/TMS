@@ -22,6 +22,7 @@ gracefullshutdown = function(msg,callback){
     })
 }
 
+
 //For nodemon restarts
 process.once('SIGUSR2',function(){
     gracefulShutdown('nodemon restart',function(){

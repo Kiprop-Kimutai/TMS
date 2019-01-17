@@ -1,3 +1,5 @@
+import { Users } from './models/Users';
+import { UsersComponent } from './users/users/users.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -27,6 +29,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { ChartsModule } from 'ng2-charts';
 import {DialogService} from './dialog.service';
 import {HttpClientModule} from '@angular/common/http';
+import { UsersListComponent } from './users/users/users-list.component';
+import {UserGroupComponent} from './administration/user-group/user-group.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +41,7 @@ import {HttpClientModule} from '@angular/common/http';
     NavListComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    DashboardComponent,DeviceFirmwareComponent,UserProfileComponent,
+    DashboardComponent,DeviceFirmwareComponent,UserProfileComponent,UsersComponent,UsersListComponent,UserGroupComponent,
     PageDirective,DeviceDialog,DeviceComponent,DeviceListComponent,FilterDevicess,PageNotFoundComponent
   ],
   imports: [

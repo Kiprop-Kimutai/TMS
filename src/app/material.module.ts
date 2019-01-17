@@ -14,9 +14,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 @NgModule({
   imports:[MatToolbarModule,MatButtonModule,MatInputModule,MatCardModule,MatSidenavModule,MatTooltipModule,MatListModule,MatTableModule,MatPaginatorModule,MatDialogModule,MatDividerModule,MatFormFieldModule,MatRadioModule,MatSlideToggleModule,MatSelectModule],
-  exports:[MatToolbarModule,MatButtonModule,MatInputModule,MatCardModule,MatSidenavModule,MatTooltipModule,MatListModule,MatTableModule,MatPaginatorModule,MatDialogModule,MatDividerModule,MatFormFieldModule,MatRadioModule,MatSlideToggleModule,MatSelectModule]
+  exports:[MatToolbarModule,MatButtonModule,MatInputModule,MatCardModule,MatSidenavModule,MatTooltipModule,MatListModule,MatTableModule,MatPaginatorModule,MatDialogModule,MatDividerModule,MatFormFieldModule,MatRadioModule,MatSlideToggleModule,
+    MatSelectModule,MatCheckboxModule]
 })
 export class MaterialModule{}
 

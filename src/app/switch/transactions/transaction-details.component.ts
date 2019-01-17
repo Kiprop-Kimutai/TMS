@@ -22,7 +22,8 @@ export class TransactionDetailComponent implements OnInit{
     transactions:any;
     transactionsCopy:any;
     paginatedTransactions:any;
-    displayedColumns = ['voucherno','cardno','iccid','txntype','oid','rcpt','voc','ddv','username','date','macaddress','txns','auth','latitude','longitude'];
+    //displayedColumns = ['voucherno','cardno','iccid','txntype','oid','rcpt','voc','ddv','username','date','macaddress','txns','auth','latitude','longitude'];
+    displayedColumns = ['voucherno','cardno','iccid','rcpt','username','date','txns','latitude','longitude'];
     pageIndex:number = 0;
     dataLength:number;
     pageSize:number = 30;
@@ -33,14 +34,14 @@ export class TransactionDetailComponent implements OnInit{
         this.transactionFilesFormGroup = new FormGroup({
             macAddress:new FormControl({value:this.transactionFile.macAddress,disabled:true},[Validators.required]),
             dateUploaded:new FormControl({value:this.transactionFile.dateUploaded,disabled:true},[Validators.required]),
-            filename:new FormControl(this.transactionFile.filename,[Validators.required]),
+            filename:new FormControl({value:this.transactionFile.filename,diabled:true},[Validators.required]),
             token:new FormControl({value:this.transactionFile.token,disabled:true},[Validators.required]),
             flag:new FormControl({value:this.transactionFile.flag},[Validators.required]),
             valueTransactionCount:new FormControl(this.transactionFile.valueTransactionCount,[Validators.required]),
-            valueTransactionAmount:new FormControl(this.transactionFile.valueTransactionAmount,[Validators.required]),
+            valueTransactionAmount:new FormControl({value:this.transactionFile.valueTransactionAmount,disabled:true},[Validators.required]),
             valueTransactionVoidCount:new FormControl(this.transactionFile.valueTransactionVoidCount,[Validators.required]),
             valueTransactionVoidAmount:new FormControl(this.transactionFile.valueTransactionVoidAmount,[Validators.required]),
-            commodityTransactionCount:new FormControl(this.transactionFile.commodityTransactionCount,[Validators.required]),
+            commodityTransactionCount:new FormControl({value:this.transactionFile.commodityTransactionCount,disabled:true},[Validators.required]),
             commodityTransactionAmount:new FormControl(this.transactionFile.commodityTransactionAmount,[Validators.required]),
             commodityTransactionVoidCount:new FormControl(this.transactionFile.commodityTransactionVoidCount,[Validators.required]),
             commodityTransactionVoidAmount:new FormControl(this.transactionFile.commodityTransactionVoidAmount,[Validators.required]),
@@ -85,7 +86,7 @@ export class TransactionDetailComponent implements OnInit{
     }
     filterTransaction(transaction):any{
         let patt = new RegExp(queryString,"i");
-        if(patt.test(transaction.voucherno) || patt.test(transaction.cardno) || patt.test(transaction.iccid) || patt.test(transaction.txntype) || patt.test(transaction.oid) || 
+        if(patt.test(transaction.voucherno) || patt.test(transaction.cardno) || patt.test(transaction.iccid) || patt.test(transaction.txntype) || patt.test(transaction.oid) ||
            patt.test(transaction.rcpt) || patt.test(transaction.voc) || patt.test(transaction.ddv) || patt.test(transaction.username || patt.test(transaction.date) ||
            patt.test(transaction.macaddress) || patt.test(transaction.txns) || patt.test(transaction.auth) || patt.test(transaction.latitude) || patt.test(transaction.longitude))){
           return transaction;
@@ -95,6 +96,9 @@ export class TransactionDetailComponent implements OnInit{
     private paginateValues(pageSize:number,pageIndex:number):void{
         this.transactions = <TransactionFiles[]>paginatorFunction(this.paginatedTransactions,pageSize,pageIndex);
         console.log(this.transactions);
+    }
+    private updateTxn(){
+      console.log("will update txn");
     }
     ngOnInit(){
         this.fetchDeviceByToken(this.route.snapshot.paramMap.get("token"));

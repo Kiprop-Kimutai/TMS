@@ -14,7 +14,7 @@ export class TransactionsComponent implements OnInit{
     transactionFiles:TransactionFiles[];
     transactionFilesCopy:TransactionFiles[];
     paginatedTransactionFiles:TransactionFiles[];
-    displayedColumns:String[] = ['macAddress','dateUploaded','filename','token','flag','valueTransactionCount','valueTransactionAmount',
+    displayedColumns:String[] = ['macAddress','dateUploaded','flag','valueTransactionCount','valueTransactionAmount',
                                 'valueTransactionVoidCount','valueTransactionVoidAmount','commodityTransactionCount','commodityTransactionAmount','commodityTransactionVoidCount',
                             'commodityTransactionVoidAmount','lastReceiptNo'];
     pageIndex:number = 0;
@@ -36,7 +36,7 @@ export class TransactionsComponent implements OnInit{
     private filterTransactionFiles(text){
         queryString = text;
         this.transactionFiles = this.transactionFilesCopy.filter(this.filterTransactionFile);
-    
+
       }
       private filterTransactionFile(transactionfile:TransactionFiles):TransactionFiles{
         let patt = new RegExp(queryString,"i");
@@ -45,7 +45,7 @@ export class TransactionsComponent implements OnInit{
         }
         return;
       }
-    
+
        paginateValues(pageSize:number,pageIndex:number):void{
         this.transactionFiles = <TransactionFiles[]>paginatorFunction(this.paginatedTransactionFiles,pageSize,pageIndex);
       }

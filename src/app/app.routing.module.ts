@@ -1,3 +1,6 @@
+import { UserGroupComponent } from './administration/user-group/user-group.component';
+import { UsersListComponent } from './users/users/users-list.component';
+import { UsersComponent } from './users/users/users.component';
 import {NgModule} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
@@ -31,6 +34,23 @@ const appRoutes:Routes = [
       {
         path:'',
         component:DashboardComponent
+      },
+      {
+        path:'admin',
+        children:[
+          {
+            path:'user-group',
+            component:UserGroupComponent
+          },
+          {
+            path:'users',
+            component:UsersListComponent
+          },
+          {
+            path:'',
+            component:UsersListComponent
+          }
+        ]
       },
       {
         path:'switch',

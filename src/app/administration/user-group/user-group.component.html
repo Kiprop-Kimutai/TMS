@@ -1,0 +1,70 @@
+<div class = "body">
+  <mat-card>
+    <form [formGroup] = "userGroup">
+        <table border = "1">
+            <tr>
+
+                <mat-form-field>
+                  <input matInput placeholder = "user group" formControlName="role"/>
+                </mat-form-field>
+
+            </tr>
+            <tr>
+              <td>
+                <span style = "font-weight: 600">Dashboard</span>
+                <tr>
+
+                    <span>dashboard</span>
+                      <mat-checkbox name = "dashboard"></mat-checkbox>
+
+                </tr>
+              </td>
+              <td>
+                <span style = "font-weight: 600">Administration</span>
+                <tr>
+
+                      <span>users</span>
+                        <mat-checkbox name = "users"></mat-checkbox>
+
+                </tr>
+                <tr>
+                      <span>user group</span>
+                        <mat-checkbox name = "user-group"></mat-checkbox>
+
+                </tr>
+              </td>
+              <td>
+                <span style = "font-weight: 600">Switch</span>
+                <tr>
+                      <span>transactions list</span>
+                        <mat-checkbox name = "transactions list"></mat-checkbox>
+                </tr>
+                <tr>
+                        <span>zsequence list</span>
+                        <mat-checkbox name = "zsequence list"></mat-checkbox>
+                </tr>
+                <tr>
+                      <span>response to pos</span>
+                        <mat-checkbox name = "responsetopos"></mat-checkbox>
+                </tr>
+              </td>
+              <td>
+                  <span style = "font-weight:600">Devices</span>
+                  <tr>
+
+                        <span>devices</span>
+                          <mat-checkbox name = "device list"></mat-checkbox>
+
+                  </tr>
+                  <tr>
+
+                        <span>device firmware</span>
+                          <mat-checkbox name = "device firmware"></mat-checkbox>
+
+                  </tr>
+                </td>
+            </tr>
+          </table>
+    </form>
+  </mat-card>
+</div>
