@@ -1809,9 +1809,6 @@ var MENUS = [
     //new Menu('users','Users','users','link'),
     new _models_menus__WEBPACK_IMPORTED_MODULE_0__["Menu"]('admin', 'Administration', 'dashboard', 'parent', [new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('users', 'Users', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('user-group', 'User Group', 'link')]),
     new _models_menus__WEBPACK_IMPORTED_MODULE_0__["Menu"]('switch', 'Switch', 'dashboard', 'parent', [new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('transactions', 'Transactions', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('zsequence', 'Zsequence', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('responsetopos', 'Scope Response', 'link')]),
-    new _models_menus__WEBPACK_IMPORTED_MODULE_0__["Menu"]('devices', "Devices", 'devices', 'parent', [new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('device-list', 'Device List', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('device_firmware', 'Manage Firmware', 'link')]),
-    new _models_menus__WEBPACK_IMPORTED_MODULE_0__["Menu"]('firmware', 'Firmware', 'test', 'parent', [new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('saral-firmware', 'Saral Info', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('newpos-firmware', 'NewPos 9220', 'link')]),
-    new _models_menus__WEBPACK_IMPORTED_MODULE_0__["Menu"]('clients', 'Clients', 'client', 'parent', [new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('wfp', 'WFP', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('pbu', 'Postbank UG', 'link'), new _models_submenus__WEBPACK_IMPORTED_MODULE_1__["SubMenus"]('tbc', 'TBC', 'link')])
 ];
 
 
