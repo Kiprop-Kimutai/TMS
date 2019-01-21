@@ -12,6 +12,7 @@ export class NavListComponent implements OnInit{
   ngOnInit(){
       console.log("Destination menus");
       console.log(this.menu);
+      console.log("[=============]")
       console.log(this.menu);
   }
 

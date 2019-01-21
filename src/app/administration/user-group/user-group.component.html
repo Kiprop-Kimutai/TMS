@@ -1,70 +1,60 @@
 <div class = "body">
   <mat-card>
-    <form [formGroup] = "userGroup">
+    <form [formGroup] = "acessFormGroup">
         <table border = "1">
             <tr>
-
                 <mat-form-field>
                   <input matInput placeholder = "user group" formControlName="role"/>
                 </mat-form-field>
-
             </tr>
-            <tr>
-              <td>
+            <th>Dashboard</th>
+            <th>Administration</th>
+            <th>Switch</th>
+            <th>Devices</th>
+            <tr formArrayName = "menus">
+              <td [formGroup] = "dashboardFormGroup">
                 <span style = "font-weight: 600">Dashboard</span>
-                <tr>
-
-                    <span>dashboard</span>
-                      <mat-checkbox name = "dashboard"></mat-checkbox>
+                    <mat-checkbox style = "size:0.5em" formControlName= "active" name = "dashboard"></mat-checkbox>
+              </td>
+              <td [formGroup] = "adminFormGroup">
+                <tr [formGroup] = "usersFormGroup">
+                    <span>users</span>
+                    <mat-checkbox name = "users" formControlName="active" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
+                </tr>
+                <tr [formGroup] = "usergroupFormGroup">
+                    <span>user group</span>
+                    <mat-checkbox formControlName = "active" name = "user-group" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
 
                 </tr>
               </td>
-              <td>
-                <span style = "font-weight: 600">Administration</span>
-                <tr>
-
-                      <span>users</span>
-                        <mat-checkbox name = "users"></mat-checkbox>
-
+              <td [formGroup] = "switchFormGroup">
+                <tr [formGroup] = "transactionsFormGroup">
+                    <span>transactions list</span>
+                    <mat-checkbox formControlName="active" name = "transactions list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
-                <tr>
-                      <span>user group</span>
-                        <mat-checkbox name = "user-group"></mat-checkbox>
-
+                <tr [formGroup] = "zsequenceFormGroup">
+                    <span>zsequence list</span>
+                    <mat-checkbox style = "size:0.3em" formControlName="active" name = "zsequence list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
-              </td>
-              <td>
-                <span style = "font-weight: 600">Switch</span>
-                <tr>
-                      <span>transactions list</span>
-                        <mat-checkbox name = "transactions list"></mat-checkbox>
-                </tr>
-                <tr>
-                        <span>zsequence list</span>
-                        <mat-checkbox name = "zsequence list"></mat-checkbox>
-                </tr>
-                <tr>
-                      <span>response to pos</span>
-                        <mat-checkbox name = "responsetopos"></mat-checkbox>
+                <tr [formGroup] = "responsetoposFormGroup">
+                    <span>response to pos</span>
+                    <mat-checkbox style = "size:0.5em" formControlName = "active" name = "responsetopos" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
               </td>
               <td>
                   <span style = "font-weight:600">Devices</span>
                   <tr>
-
-                        <span>devices</span>
-                          <mat-checkbox name = "device list"></mat-checkbox>
-
+                    <span>devices</span>
+                    <mat-checkbox name = "device list"></mat-checkbox>
                   </tr>
                   <tr>
-
-                        <span>device firmware</span>
-                          <mat-checkbox name = "device firmware"></mat-checkbox>
-
+                      <span>device firmware</span>
+                      <mat-checkbox name = "device firmware"></mat-checkbox>
                   </tr>
                 </td>
             </tr>
           </table>
+          <button [disabled] = "acessFormGroup.status === 'INVALID'" (click) = "testFormGroup()">test</button>
     </form>
   </mat-card>
 </div>

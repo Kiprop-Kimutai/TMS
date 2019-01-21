@@ -1,4 +1,4 @@
-<div class = "sidenav">
+<!--<div class = "sidenav">
 <mat-nav-list>
 <a *ngIf = "menu.type === 'link'" mat-list-item [routerLink] = "[menu.name]">
 <img src = "../../assets/icons/{{menu.icon}}.png" style = "margin-left:12px;"/>
@@ -18,4 +18,29 @@
 </a>
 </mat-nav-list>
 </div>
-</div>
+</div> -->
+
+<div class = "sidenav">
+    <mat-nav-list *ngIf = "menu.active">
+    <a *ngIf = "menu.type === 'link'" mat-list-item [routerLink] = "[menu.name]">
+    <img src = "../../assets/icons/{{menu.icon}}.png" style = "margin-left:12px;"/>
+    <span style = "margin-top:6px;margin-left:6px;color:black;">{{menu.label}}</span>
+    </a>
+    <mat-list-item class = "mat-list-item" *ngIf = "menu.type === 'parent'" (click) = "showSubmenus()">
+    <img src = "../../assets/icons/{{menu.icon}}.png" style = "margin-left:12px;"/>
+    <span style = "margin-left:6px;color:black;">{{menu.label}}</span>
+    <img src = "../../assets/icons/{{slidericon}}.png" style = "position:relative;margin-left:15px;">
+    </mat-list-item>
+    </mat-nav-list>
+    <div *ngIf = "showChildren" class = "submenus" style ="position: relative;margin-top:-10px;">
+    <mat-nav-list>
+      <mat-list-item style = "height:5vh;width:100%"[hidden] = "child.active" *ngFor = "let child of menu.children">
+          <a  style = "width:100%"[routerLink] = "[menu.name,child.name]">
+              <span *ngIf = "child.active" style = "font-size:0.8em;width:100%;color:black">{{child.label}}</span>
+              <mat-divider  *ngIf = "child.active"></mat-divider>
+          </a>
+      </mat-list-item>
+    </mat-nav-list>
+    </div>
+    </div>
+

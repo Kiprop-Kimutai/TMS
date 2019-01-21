@@ -20,7 +20,8 @@ export class LayoutComponent implements OnInit{
     ngOnInit(){
       this.loadSidenavProperties();
       this.loggedInuser = this.authService.loggedInuser;
-      this.loadMenus();
+      //this.loadMenus();
+      this.loadMockMenus();
     }
 
     loadSidenavProperties(){
@@ -35,6 +36,14 @@ export class LayoutComponent implements OnInit{
 
     loadMenus(){
       this.menuService.fetchMenus().subscribe(data =>{this.menus = data;console.log(data)})
+    }
+    loadMockMenus(){
+      this.authService.fetchUserGroupByRole(window.sessionStorage.getItem('role')).subscribe(resp=>{
+        console.log("=============");
+        console.log(resp);
+        this.menus = resp.response_message.menus;
+        console.log("[menus] =>",this.menus);
+      })
     }
 
     private showProfile(){

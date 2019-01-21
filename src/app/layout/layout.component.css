@@ -20,10 +20,17 @@
   /*background-color:rgba(199, 208, 227, 0.14);*/
   background-color: whitesmoke;
   text:white;
+  height:60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /*background-color: #272B35;*/
 }
 
 .submenus{
   margin-left: 45px;
+}
+.mat-list-item:hover{
+  background-color: #555;
 }
 
 .profilecomponent{
@@ -40,7 +47,7 @@ sidenav{
 }
 @media only screen and (min-device-width:830px){
   .mat-drawer{
-    width: 15vw;
+    width: 17vw;
   }
 }
 @media only screen and (max-device-width:640px){
@@ -54,6 +61,7 @@ sidenav{
 
   .body{
     /*background-color: blue;*/
+
   }
 
 }

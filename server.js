@@ -16,8 +16,17 @@ app.use(function (req, res, next) {
     next();
   });
 
+
 //app.use('/api',api);
 app.use('/api',api);
+  // error handlers
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 //catch all wild routes and return index.html
 app.get('*',(req,res,next) =>{
     res.sendFile(path.join(__dirname,'dist/index.html'))

@@ -1,3 +1,4 @@
+import { MessagingService } from './common/messaging.service';
 import { Users } from './models/Users';
 import { UsersComponent } from './users/users/users.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +50,7 @@ import {UserGroupComponent} from './administration/user-group/user-group.compone
     FlexLayoutModule,ChartsModule,ServiceModule,HttpClientModule
 
   ],
-  providers: [UserFormService,DialogService],
+  providers: [UserFormService,DialogService,MessagingService],
   entryComponents:[LoginFormComponent,RegisterFormComponent,DeviceDialog],
   exports:[FlexLayoutModule],
   bootstrap: [AppComponent]

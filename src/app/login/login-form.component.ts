@@ -1,3 +1,4 @@
+import { MessagingService } from './../common/messaging.service';
 import {Component,OnInit,Output,EventEmitter} from '@angular/core';
 import {FormGroup,FormBuilder,Validators,FormControl,ValidatorFn,AbstractControl} from '@angular/forms';
 import {Users} from '../models/Users';
@@ -13,12 +14,13 @@ export class LoginFormComponent implements OnInit{
   @Output() loadRegistrationPage = new EventEmitter<number>()
    userForm:FormGroup;
    user:Users = new Users(0,'alexi','alex','smith','alixsmith@newLogic.io','password@private');
-    constructor(private fb:FormBuilder,private usersPageComponent:UsersPageComponent,private authService:AuthService,private router:Router){
+    constructor(private fb:FormBuilder,private usersPageComponent:UsersPageComponent,private authService:AuthService,private router:Router,
+      private messagingService:MessagingService){
       this.createForm();
     }
     createForm(){
       this.userForm = new FormGroup({
-        'username':new FormControl(this.user.username,[Validators.required,Validators.minLength(4),regexValidator(/[0-9*&^%$$£'"?>:@<;]/)]),
+        'email':new FormControl(this.user.username,[Validators.required,Validators.minLength(4)/*,regexValidator(/[0-9*&^%$$£'"?>:@<;]/)*/]),
         'password':new FormControl(this.user.password,[Validators.required,Validators.minLength(8)])
       /*  'username':['',[Validators.required,Validators.minLength(4)/*,regexValidator(/[a-zA-Z]/,'numbers/special characters not allowed')]],
         'password':['',[Validators.required,Validators.minLength(8)]]*/
@@ -28,19 +30,29 @@ export class LoginFormComponent implements OnInit{
       //this.createForm();
     }
 
-    login(username:string,password:string):any{
-      this.authService.login(username,password).subscribe(data =>{
+    login():any{
+      console.log(this.userForm.getRawValue());
+      this.authService.login(this.userForm.getRawValue()).subscribe(data =>{
         console.log(data);
-        if(data == true){
+        if(data.token){
+          this.authService.saveToken(data.token);
+          this.authService.setUserRole(data.role);
           console.log("Logged in successfully");
           console.log(this.authService.redirectUrl);
           if(this.authService.redirectUrl){
             this.router.navigate([this.authService.redirectUrl]);
             return;
           }
+
           this.router.navigate(['/layout']);
         }
+        else{
         console.log("Not logged in");
+        this.messagingService.alert("login failed");
+      }
+      },err =>{
+        console.error(err);
+        this.messagingService.alert("login failed");
       });
       /*if(this.authService.login(username,password)){
         console.log("Logged in successfully");

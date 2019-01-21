@@ -4,5 +4,13 @@
 
 .profilewidget,div:hover{
     background-color:grey;
-    
+}
+mat-card{
+  font-size: 100%;
+}
+.profile-element{
+  height:2em;
+  position: relative;
+  margin-left:-20px;
+  margin-right:-20px;
 }
