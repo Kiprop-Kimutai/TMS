@@ -32,6 +32,7 @@ export class UsersListComponent implements OnInit{
       this.usersCopy = resp.response_message;
       this.paginatedUsers = resp.response_message;
       this.dataSource = new MatTableDataSource(this.users);
+      this.dataLength = resp.response_message.length;
     })
   }
 
