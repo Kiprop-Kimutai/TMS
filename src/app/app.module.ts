@@ -32,6 +32,8 @@ import {DialogService} from './dialog.service';
 import {HttpClientModule} from '@angular/common/http';
 import { UsersListComponent } from './users/users/users-list.component';
 import {UserGroupComponent} from './administration/user-group/user-group.component';
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'Highcharts';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import {UserGroupComponent} from './administration/user-group/user-group.compone
   ],
   imports: [
     BrowserModule,CommonModule,BrowserAnimationsModule,AppRoutingModule,ReactiveFormsModule,FormsModule,MaterialModule,
-    FlexLayoutModule,ChartsModule,ServiceModule,HttpClientModule
+    FlexLayoutModule,ChartsModule,ServiceModule,HttpClientModule,
+    ChartModule.forRoot(highcharts)
 
   ],
   providers: [UserFormService,DialogService,MessagingService],

@@ -24,6 +24,7 @@
     "@angular/platform-browser": "^6.0.7",
     "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/router": "^6.0.7",
+    "angular2-highcharts": "^0.5.5",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "express-jwt": "^5.3.1",

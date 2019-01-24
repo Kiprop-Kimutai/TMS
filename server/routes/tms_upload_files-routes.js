@@ -22,4 +22,18 @@ app.get('/fetchall',(req,res,next) =>{
         }
     })
 })
+
+app.post("/post",(req,res,next)=>{
+  TMSUploadFiles.insertMany(req.body.response_message, (err,docs) =>{
+    if(err){
+      console.error(err);
+      res.status(201).send("failed to insert records");
+    }
+    else{
+      res.status(201).send("ok..");
+    }
+  })
+})
+
+
 module.exports = app;

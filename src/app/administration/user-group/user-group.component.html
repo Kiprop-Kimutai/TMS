@@ -19,26 +19,25 @@
               <td [formGroup] = "adminFormGroup">
                 <tr [formGroup] = "usersFormGroup">
                     <span>users</span>
-                    <mat-checkbox name = "users" formControlName="active" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
+                    <mat-checkbox color = "primary" name = "users" formControlName="active" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
                 </tr>
                 <tr [formGroup] = "usergroupFormGroup">
                     <span>user group</span>
-                    <mat-checkbox formControlName = "active" name = "user-group" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
-
+                    <mat-checkbox formControlName = "active" color = "primary" name = "user-group" (mouseleave) = "setAdminFormGroupStatus()"></mat-checkbox>
                 </tr>
               </td>
               <td [formGroup] = "switchFormGroup">
                 <tr [formGroup] = "transactionsFormGroup">
                     <span>transactions list</span>
-                    <mat-checkbox formControlName="active" name = "transactions list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
+                    <mat-checkbox formControlName="active" color = "primary" name = "transactions list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
                 <tr [formGroup] = "zsequenceFormGroup">
                     <span>zsequence list</span>
-                    <mat-checkbox style = "size:0.3em" formControlName="active" name = "zsequence list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
+                    <mat-checkbox style = "size:0.3em" formControlName="active" color = "primary" name = "zsequence list" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
                 <tr [formGroup] = "responsetoposFormGroup">
                     <span>response to pos</span>
-                    <mat-checkbox style = "size:0.5em" formControlName = "active" name = "responsetopos" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
+                    <mat-checkbox style = "size:0.5em" formControlName = "active" color = "primary" name = "responsetopos" (mouseleave) = "setSwitchFormGroupStatus()"></mat-checkbox>
                 </tr>
               </td>
               <td>

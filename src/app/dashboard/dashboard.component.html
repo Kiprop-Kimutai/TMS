@@ -1,30 +1,27 @@
 <div class = "body">
 <div fxLayout = "row" fxLayout.xs = "column" fxHide.xs = true>
 <mat-card fxFlex = "20vw" class = "matcard">
-<!--<mat-card-title>Devices</mat-card-title>-->
-<mat-card-subtitle>Model:NEWPOS 9220</mat-card-subtitle>
-<span>No:320</span><br>
-<span>Firmware:3.2.0</span>
+<mat-card-subtitle>Total Txn Batch</mat-card-subtitle>
+<span>No:35854</span><br>
 </mat-card>
 <mat-card fxFlex = "20vw" class="matcard">
-<mat-card-subtitle>Model:SARAL INFOTECH</mat-card-subtitle>
-<span>No:25</span><br>
-<span>Firmware:2.4.0</span>
+<mat-card-subtitle>Successful Transactions</mat-card-subtitle>
+<span>No:36555</span><br>
 </mat-card>
 <mat-card fxHide.xs = true fxFlex = "20vw" class = "matcard">
-<mat-card-subtitle>MIFARE EV2 4K</mat-card-subtitle>
-<span>No:24000</span><br>
+<mat-card-subtitle>Pending Transactions</mat-card-subtitle>
+<span>No:54</span><br>
 </mat-card>
 <mat-card fxHide.xs = true fxFlex = "20vw" class = "matcard">
-<mat-card-subtitle>COMPAS AGENCY API</mat-card-subtitle>
-<span>Version:1.2.0</span>
+<mat-card-subtitle>Failed Transactions</mat-card-subtitle>
+<span>No:21</span>
 </mat-card>
 <mat-card fxFlex = "20vw" class = "matcard">
-<mat-card-subtitle>COMPAS API</mat-card-subtitle>
-<span>Version:2.2.1</span>
+<mat-card-subtitle>Initialized Transactions</mat-card-subtitle>
+<span>No:441</span>
 </mat-card>
 </div>
-<div class = "charts-container" fxLayout = "row" fxLayout.xs= "row">
+<!--<div class = "charts-container" fxLayout = "row" fxLayout.xs= "row">
 <mat-card  fxFlex="30vw" fxFlex.xs = "48vw" fxFlexOffset.xs = "2vw" class = "linechart">
 <div>
     <div style="display:block;">
@@ -65,8 +62,8 @@
 
 </div>
 </mat-card>
-</div>
-<div class = "charts-container">
+</div>-->
+<!--<div class = "charts-container">
 <mat-card fxFlexOffset = "10vw" fxFlex = "50vw" fxFlexOffset.xs = "1vw" fxFlex.xs = "90vw">
  <div class="col-md-6" class="device-line-chart">
     <canvas *ngIf = "showBarChart_gt_sm" baseChart
@@ -84,5 +81,19 @@
                 (chartHover)="chartHovered($event)"></canvas>
   </div>
 </mat-card>
+</div>-->
+<div>
+  <div fxFlex = "40%" style ="background-color: thistle">
+      <chart [options] = "pieChartOptions" style="display: block;margin-left:-10%" type = "chart"> </chart>
+  </div>
+  <div fxFlex = "48%" fxFlexOffset = "2%" style = "margin-left:10px;background-color: teal">
+      <chart  [options] = "barChartOptions" style="display: block" type = "chart"> </chart>
+  </div>
+</div>
+<div>
+    <chart fxFlex = "80%" [options] = "lineChartOptions" style="display: block;" type = "chart"> </chart>
+</div>
+<div>
+    <chart fxFlex = "80%" [options] = "columnChartOptions" style="display: block" type = "chart"> </chart>
 </div>
 </div>
