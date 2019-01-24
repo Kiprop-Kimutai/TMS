@@ -93,6 +93,7 @@ export class AuthService{
 
     public register(user:TokenPayload):Observable<any>{
       let headers = new HttpHeaders({'Content-Type':'application/json'});
+      console.log(user);
       return this.http.post(`${this.API}/register`,user,{headers:headers});
     }
 
@@ -117,6 +118,10 @@ export class AuthService{
 
     public fetchAllAccessGroups():Observable<any>{
       return this.http.get(`${this.API}/accesscontrol/fetchallaccessgroups`);
+    }
+
+    public fetchAllUsers():Observable<any>{
+      return this.http.get(`${this.API}/users/fetchusers`);
     }
 
 }

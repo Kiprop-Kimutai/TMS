@@ -1,3 +1,84 @@
 <div class = "body">
-  <span>It works</span>
+  <mat-card>
+    <div *ngIf = "!createUser">
+        <mat-form-field class = "filterField">
+        <input  matInput (keyup)= "filterUsers($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <button mat-mini-fab style = "size:0.8em;position: relative;left:70%;top:3px;background-color: teal" (click) = "addUser()"><span style = "font: 600;size:4em">+</span></button>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- username Column -->
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef> username </th>
+              <td mat-cell *matCellDef="let user" > {{user.username}} </td>
+            </ng-container>
+
+            <!-- email  Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>email </th>
+              <td mat-cell *matCellDef="let user" > {{user.email}} </td>
+            </ng-container>
+
+            <!-- role Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef>role</th>
+              <td mat-cell *matCellDef="let user" > {{user.role}} </td>
+            </ng-container>
+            <!-- status  Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>status</th>
+                <td mat-cell *matCellDef="let user" > {{user.status}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "navigateToTransactionDetails(row.email)"></tr>
+          </table>
+        <div>
+        <mat-paginator [length]= "dataLength"
+                      [pageSize]="pageSize"
+                      [pageSizeOptions]="[2, 3, 5, 10, 25, 100]"
+                      (page) = "pageEvent = $event" (page) = "paginateValues(pageEvent.pageSize,pageEvent.pageIndex)">
+        </mat-paginator >
+        </div>
+      </div>
+      <div *ngIf = "createUser">
+
+        <form [formGroup] = "userFormGroup" (ngSubmit)="registerUser()"style = "position: relative;left:20%;top:20%">
+            <span style = "position:relative;font-weight:600;left:10%">create new user</span>
+          <div>
+              <mat-form-field class = "userform-field">
+                  <input placeholder="username" matInput formControlName="username"/>
+                </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class = "userform-field">
+                  <input placeholder="email" matInput formControlName="email"/>
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class = "userform-field">
+                  <input placeholder="password" matInput formControlName="password"/>
+              </mat-form-field>
+          </div>
+          <div>
+
+                <mat-slide-toggle matInput formControlName="status">status</mat-slide-toggle>
+
+          </div>
+          <div>
+               <mat-form-field class = "userform-field">
+                  <mat-select formControlName = "role" placeholder="role">
+                      <mat-option *ngFor="let role of userRoles" [value]="role.role">
+                        {{role.role}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+          <div>
+              <button type  = "submit" mat-raised-button [disabled] = "userFormGroup.status === 'INVALID'"style = "background-color:teal">create</button>
+              <button mat-raised-button style = "background-color:teal;position: relative;left:20%" (click) = "cancelUserCreation()">cancel</button>
+          </div>
+        </form>
+      </div>
+  </mat-card>
 </div>

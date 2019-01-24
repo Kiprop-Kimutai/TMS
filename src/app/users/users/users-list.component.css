@@ -2,3 +2,19 @@
   height:89vh;
   overflow-y: scroll;
 }
+mat-card{
+  width:96%;
+}
+table{
+  width:90%;
+}
+tr:hover{
+  background-color: aliceblue;
+}
+mat-paginator{
+  position: relative;
+  right: 10%;
+}
+.userform-field{
+  width:40%
+}

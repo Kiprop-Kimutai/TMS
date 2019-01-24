@@ -14,7 +14,7 @@
             <tr formArrayName = "menus">
               <td [formGroup] = "dashboardFormGroup">
                 <span style = "font-weight: 600">Dashboard</span>
-                    <mat-checkbox style = "size:0.5em" formControlName= "active" name = "dashboard"></mat-checkbox>
+                    <mat-checkbox style = "size:0.5em"  color = "primary" formControlName= "active" name = "dashboard"></mat-checkbox>
               </td>
               <td [formGroup] = "adminFormGroup">
                 <tr [formGroup] = "usersFormGroup">
@@ -44,16 +44,16 @@
                   <span style = "font-weight:600">Devices</span>
                   <tr>
                     <span>devices</span>
-                    <mat-checkbox name = "device list"></mat-checkbox>
+                    <mat-checkbox name = "device list" color = "primary"></mat-checkbox>
                   </tr>
                   <tr>
                       <span>device firmware</span>
-                      <mat-checkbox name = "device firmware"></mat-checkbox>
+                      <mat-checkbox name = "device firmware" color = "primary"></mat-checkbox>
                   </tr>
                 </td>
             </tr>
           </table>
-          <button [disabled] = "acessFormGroup.status === 'INVALID'" (click) = "testFormGroup()">test</button>
+          <button mat-raised-button style = "background-color: teal;position: relative;left:40%;right: 40%" [disabled] = "acessFormGroup.status === 'INVALID'" (click) = "testFormGroup()">create</button>
     </form>
   </mat-card>
 </div>
