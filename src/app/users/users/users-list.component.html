@@ -5,7 +5,7 @@
         <input  matInput (keyup)= "filterUsers($event.target.value)" placeholder="Filter">
         </mat-form-field>
         <button mat-mini-fab style = "size:0.8em;position: relative;left:70%;top:3px;background-color: teal" (click) = "addUser()"><span style = "font: 600;size:4em">+</span></button>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="users" class="mat-elevation-z8">
 
             <!-- username Column -->
             <ng-container matColumnDef="username">

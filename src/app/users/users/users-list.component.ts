@@ -35,12 +35,14 @@ export class UsersListComponent implements OnInit{
     })
   }
 
-  private filterUsers(text){
+   filterUsers(text){
     queryString = text;
     this.users = this.usersCopy.filter(this.filterUser);
 
   }
-  private filterUser(user:User):User{
+   filterUser(user:User):User{
+     console.log("Init..");
+     console.log(user);
     let patt = new RegExp(queryString,"i");
     if(patt.test(user.email) || patt.test(user.role) || patt.test(""+user.status)){
       return user;
