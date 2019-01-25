@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import {Component,OnInit, OnChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TransactionFiles} from '../../models/tms_upload_files';
 import {SwitchService} from '../switch.service';
@@ -6,15 +6,17 @@ import {FormGroup,FormControl,Validators} from '@angular/forms';
 import { resolve } from 'url';
 import {MatTableDataSource} from '@angular/material/table';
 import {paginatorFunction} from '../../common/PaginatorFunction';
+import { MessagingService } from '../../common/messaging.service';
 @Component({
     selector:'transaction-details',
     templateUrl:'./transaction-details.component.html',
     styleUrls:['./transaction-details.component.css']
 })
-export class TransactionDetailComponent implements OnInit{
+export class TransactionDetailComponent implements OnInit,OnChanges{
     transactionFile:TransactionFiles;
     transactionFileCopy:TransactionFiles;
     transactionFilesFormGroup:FormGroup;
+    transactionsRef:FormGroup;
     showtxnFormGroup = false;
     showtransactions = false;
     flagOptions = ["P","U","F","D"];
@@ -27,14 +29,14 @@ export class TransactionDetailComponent implements OnInit{
     pageIndex:number = 0;
     dataLength:number;
     pageSize:number = 30;
-    constructor(private route:ActivatedRoute,private switchService:SwitchService){
+    constructor(private route:ActivatedRoute,private switchService:SwitchService,private messagingService:MessagingService){
        // this.createFormGroup();
     }
     createFormGroup(){
         this.transactionFilesFormGroup = new FormGroup({
             macAddress:new FormControl({value:this.transactionFile.macAddress,disabled:true},[Validators.required]),
             dateUploaded:new FormControl({value:this.transactionFile.dateUploaded,disabled:true},[Validators.required]),
-            filename:new FormControl({value:this.transactionFile.filename,diabled:true},[Validators.required]),
+            filename:new FormControl({value:this.transactionFile.filename,disabled:true},[Validators.required]),
             token:new FormControl({value:this.transactionFile.token,disabled:true},[Validators.required]),
             flag:new FormControl({value:this.transactionFile.flag},[Validators.required]),
             valueTransactionCount:new FormControl(this.transactionFile.valueTransactionCount,[Validators.required]),
@@ -57,6 +59,7 @@ export class TransactionDetailComponent implements OnInit{
         }).then((done)=>{
             this.createFormGroup();
             this.showtxnFormGroup = true;
+            this.transactionsRef = this.transactionFilesFormGroup.getRawValue();
             this.fetchTransactions(this.transactionFilesFormGroup.get('filename').value);
         })
         //this.switchService.fetchTransactionFileByToken(token).subscribe(data =>{console.log(this.transactionFile),this.transactionFile = data;this.transactionFileCopy = data;console.log(data)});
@@ -97,8 +100,25 @@ export class TransactionDetailComponent implements OnInit{
         this.transactions = <TransactionFiles[]>paginatorFunction(this.paginatedTransactions,pageSize,pageIndex);
         console.log(this.transactions);
     }
-    private updateTxn(){
-      console.log("will update txn");
+    private updateTransactionBatch(){
+      console.log(this.transactionFilesFormGroup.getRawValue());
+      console.log(this.transactionsRef);
+      if(JSON.stringify(this.transactionFilesFormGroup.getRawValue()) == JSON.stringify(this.transactionsRef)){
+        this.messagingService.alert("no field to update");
+      }
+      else{
+        this.switchService.updateTransactionBatch(this.transactionFilesFormGroup.getRawValue()).subscribe(resp =>{
+          if(resp.response_code){
+              this.messagingService.alert('batch upated successfully');
+          }
+          else{
+            this.messagingService.alert("update operation failed");
+          }
+        })
+      }
+    }
+    ngOnChanges(){
+
     }
     ngOnInit(){
         this.fetchDeviceByToken(this.route.snapshot.paramMap.get("token"));

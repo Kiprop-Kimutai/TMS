@@ -37,6 +37,10 @@ export class SwitchService{
         console.log("initialized..."+filename);
         return this.http.post(`${this.API}/transactions/batchtransactions`,{filename:filename},{headers:headers});
     }
+
+    public updateTransactionBatch(batch):Observable<any>{
+      return this.http.post(`${this.API}/tms_file_routes/update`,batch,{headers:{'Content-Type':'application/json'}});
+    }
 }
 
 const transactions = {

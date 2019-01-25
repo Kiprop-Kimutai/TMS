@@ -1,7 +1,7 @@
 <div class = "body">
     <mat-card>
         <form *ngIf = "showtxnFormGroup" [formGroup] = "transactionFilesFormGroup" (ngSubmit) = "updateTransaction()">
-            <table border = "0">
+            <table border = "1">
                 <tr>
                     <td>
                         <div>
@@ -14,7 +14,7 @@
                     <td>
                         <div>
                             <label for = "dateUploaded" class = "field-label">date Uploaded</label><br>
-                            <mat-form-field class = "device-input">
+                            <mat-form-field class = "device-input" style = "width:100%">
                                 <input matInput   formControlName = "dateUploaded" />
                             </mat-form-field>
                         </div>
@@ -22,15 +22,15 @@
                     <td>
                         <div>
                             <label for = "filename" class = "field-label">filename</label><br>
-                            <mat-form-field class = "device-input">
+                            <mat-form-field class = "device-input" style = "width:60%">
                                 <input matInput   formControlName = "filename" />
                             </mat-form-field>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+
+                    <td colspan="2">
                         <div>
                             <label for = "firstReceiptNo" class = "field-label">first receipt</label><br>
                             <mat-form-field class = "device-input">
@@ -74,21 +74,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+
+                    <td colspan = "3">
                         <div>
+                                <mat-label>flag</mat-label><br>
                                 <mat-form-field>
-                                        <mat-select placeholder={{transactionFile.flag}}>
-                                          <mat-option *ngFor="let flag of flagOptions" [value]="flag">
-                                            {{flag}}
-                                          </mat-option>
+                                        <mat-select  formControlName = "flag" placeholder={{transactionFile.flag}}>
+                                          <mat-option *ngFor="let flag of flagOptions" [value]="flag">{{flag}}</mat-option>
                                         </mat-select>
                                       </mat-form-field>
                         </div>
                     </td>
                 </tr>
             </table>
-            <button mat-raised-button style = "background-color:teal;position: relative;margin-left:30%;margin-right:70%" (click) = "updateTxn()">update</button>
+            <button mat-raised-button style = "background-color:teal;position: relative;margin-left:30%;margin-right:70%" (click) = "updateTransactionBatch()">update</button>
         </form>
         <mat-divider></mat-divider>
         <mat-form-field class = "filterField">

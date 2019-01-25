@@ -35,5 +35,26 @@ app.post("/post",(req,res,next)=>{
   })
 })
 
+app.post('/update',(req,res,next) =>{
+  var tms_upload_files = new TMSUploadFiles(req.body);
+  console.log(req.body);
+  new Promise((resolve,reject) =>{
+    TMSUploadFiles.findOneAndUpdate({filename:req.body.filename},req.body,(err,res) =>{
+      if(err){
+        console.error(err);
+        reject(new ApiResponse(false,"error updating user"));
+      }
+      else{
+        console.log("tick..")
+      resolve(new ApiResponse(true,res));
+      }
+    })
+  }).then((resp) =>{
+    res.status(201).send(resp);
+  },(err)=>{
+    res.status(201).send(err);
+  })
+})
+
 
 module.exports = app;
